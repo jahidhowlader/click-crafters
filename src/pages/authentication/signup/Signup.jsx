@@ -1,13 +1,38 @@
 import { useForm } from "react-hook-form";
+import useAuthContext from "../../../hook/useAuthContext";
+import SocialLogin from "../../shared/socialLogin/SocialLogin";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import '../Authentication.css'
 
 const Signup = () => {
 
-    const { register, handleSubmit, watch,reset, formState: { errors } } = useForm();
+    // Context API
+    const { user, signUp } = useAuthContext()
+    console.log(user);
+
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
 
     const onSubmit = data => {
         reset()
         console.log(data);
+
+        signUp(data.email, data.password)
+            .then(userCredential => {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: `<span >Successfully Create Account, Thanks!</span>`,
+                })
+            })
+            .catch(e => {
+                Swal.fire({
+                    icon: 'error',
+                    title: `<span >${e.code}</span>`,
+                })
+
+            })
+
     }
 
     return (
@@ -60,12 +85,11 @@ const Signup = () => {
                     <input type="submit" className="bg-white py-1 lg:py-3 px-3 lg:px-8 lg:text-xl block mt-2" />
                 </form>
             </div>
-            <div className="max-w-6xl mx-auto">
-                <button className="bg-blue bg-opacity-60 text-white w-full py-3 mt-5">Sign-in with Google</button>
-                <Link to="/signin">
-                    <p className='text-white mt-8 mb-4 text-center'>Already registered? <span className='font-bold '> Go to sign-in</span></p>
-                </Link>
-            </div>
+
+            <SocialLogin></SocialLogin>
+            <Link to="/signin">
+                <p className='text-white mt-8 mb-4 text-center'>Alrady have an account? <span className='font-bold '> Please Signin..</span></p>
+            </Link>
         </div>
     );
 };

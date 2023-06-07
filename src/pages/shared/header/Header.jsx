@@ -1,6 +1,28 @@
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAuthContext from "../../../hook/useAuthContext";
 
 const header = () => {
+
+    // Context API
+    const { user, logOut } = useAuthContext()
+    
+    //  handler Logout 
+    const handlerLogout = () => {
+        logOut()
+            .then(() => {
+                toast.success('Successfully Logout', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    });
+            })
+    }
 
     const logo = 'ClickCrafters'
 
@@ -8,7 +30,14 @@ const header = () => {
         <li> <Link>Home</Link></li>
         <li> <Link>Courses</Link></li>
         <li> <Link>Instructors</Link></li>
-        <li> <Link to="/signin">Signin</Link></li>
+        {
+            user ? <li>
+                <button onClick={handlerLogout}>
+                    <Link to="/">SIGNOUT</Link>
+                </button>
+            </li> :
+                <li> <Link to="/signin">Signin</Link></li>
+        }
     </>
     return (
         <nav className="navbar bg-black text-white fixed z-10 px-10 border-b-2">
