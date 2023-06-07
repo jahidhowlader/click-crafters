@@ -1,8 +1,13 @@
+import ExploreClass from "./ExploreClass";
+import HomeBanner from "./HomeBanner";
+import SubscribesBenifit from "./SubscribesBenifit";
 
 const Home = () => {
     return (
         <>
-            <h2>Hello</h2>
+            <HomeBanner></HomeBanner>
+            <SubscribesBenifit></SubscribesBenifit>
+            <ExploreClass></ExploreClass>
         </>
     );
 };
