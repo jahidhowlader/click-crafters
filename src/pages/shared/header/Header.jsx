@@ -8,10 +8,10 @@ const header = () => {
         <li> <Link>Home</Link></li>
         <li> <Link>Courses</Link></li>
         <li> <Link>Instructors</Link></li>
-        <li> <Link>Signin</Link></li>
+        <li> <Link to="/signin">Signin</Link></li>
     </>
     return (
-        <nav className="navbar bg-black text-white fixed z-10 px-10">
+        <nav className="navbar bg-black text-white fixed z-10 px-10 border-b-2">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

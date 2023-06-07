@@ -8,7 +8,8 @@ export default {
     colors: {
       "black": "#000",
       "white": "#fff",
-      "blue": "#0000FF"
+      "blue": "#0000FF",
+      "orange": "#FFA400"
     },
     extend: {},
   },

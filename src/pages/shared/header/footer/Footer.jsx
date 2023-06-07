@@ -41,7 +41,7 @@ const Footer = () => {
                 </div>
                 <div className=" space-x-2 mt-2">
                     <input type="text" className="p-2 text-black" placeholder="Email" />
-                    <button className="bg-white  shadow-white text-red font-bold  mt-2 px-2 md:px-5 py-2">Send</button>
+                    <button className="bg-white  shadow-white text-black font-bold  mt-2 px-2 md:px-5 py-2">Send</button>
                 </div>
                 <p>Please keep in touch</p>
             </div>
