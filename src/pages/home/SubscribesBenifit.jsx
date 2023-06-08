@@ -1,7 +1,7 @@
 
 const SubscribesBenifit = () => {
     return (
-        <section className="grid grid-cols-2 lg:mx-48 lg:my-32 gap-20 items-center">
+        <section className="grid grid-cols-2 my-container lg:my-32 gap-20 items-center">
             <div>
                 <h3 className="font-bold text-3xl pb-8">Subscribe for access to 2000 classes taught by the worlds top experts</h3>
                 <ul className="space-y-2 text-[22px] list-disc font-mono opacity-90 lg:pl-14">

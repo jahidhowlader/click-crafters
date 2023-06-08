@@ -6,6 +6,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.my-container{
+  @apply max-w-7xl mx-auto
+}
+
 body {
   font-family: 'Geologica', sans-serif;
 }

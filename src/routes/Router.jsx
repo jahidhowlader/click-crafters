@@ -32,11 +32,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "courses",
-                element: <Courses></Courses>
+                element: <Courses></Courses>,
+                loader: () =>fetch('/public/fakeData.json')
             },
             {
                 path: "instructors",
-                element: <Instructors></Instructors>
+                element: <Instructors></Instructors>,
+                loader: () =>fetch('/public/fakeData.json')
             },
         ]
     },

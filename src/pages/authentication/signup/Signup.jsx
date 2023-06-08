@@ -26,7 +26,7 @@ const Signup = () => {
                 setLoading(true)
 
                 // upload Image
-                fetch(`https://api.imgbb.com/1/upload?key=9727eee4148b49c805350c3f4f395219`, {
+                fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_KEY}`, {
                     method: 'POST',
                     body: formData
                 })
