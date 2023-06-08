@@ -1,14 +1,15 @@
 import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Logo from "../logo/Logo";
 
 const Footer = () => {
 
-    const logo = 'ClickCrafters'
-
     return (
-        <footer className="footer p-10 bg-black text-white mx-auto items-center justify-around">
+        <footer className="footer p-10 bg-primary-clr text-white mx-auto items-center justify-around">
             <div>
-                <Link to="/" className="btn btn-ghost uppercase -ml-4">{logo.split('').map((word, idx) => <span key={idx} className="bg-white text-black w-4 h-4">{word}</span>)}</Link>
+                <div className="-ml-4">
+                    <Logo></Logo>
+                </div>
                 <p>Hasbro Industries Ltd.<br />Providing reliable toy since 1992</p>
                 <span className="mt-">Help | &copy; Jahid Howlader</span>
             </div>

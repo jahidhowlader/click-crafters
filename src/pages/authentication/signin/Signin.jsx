@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import SocialLogin from "../../shared/socialLogin/SocialLogin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthContext from "../../../hook/useAuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const Signin = () => {
 
     // Context API
-    const{ signIn} = useAuthContext()
+    const { loading, setLoading, signIn } = useAuthContext()
 
     // Password Show and hidden
     const [showPassword, setShowPassword] = useState(false)
@@ -20,13 +21,15 @@ const Signin = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
+    const navigate = useNavigate()
     const onSubmit = data => {
 
         signIn(data.email, data.password)
-            .then(userCredential => {
+            .then(() => {
 
                 reset()
-                toast.success('Successfully Logout', {
+                setLoading(false)
+                toast.success('Successfully Signin', {
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,
@@ -35,9 +38,12 @@ const Signin = () => {
                     draggable: true,
                     progress: undefined,
                     theme: "colored",
-                    });
+                });
+                navigate('/')
             })
-            .catch(e=> {
+            .catch(e => {
+                
+                setLoading(false)
                 Swal.fire({
                     icon: 'error',
                     title: `<span >${e.code}</span>`,
@@ -47,6 +53,9 @@ const Signin = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Signin | Click Crafters</title>
+            </Helmet>
             <div className="bg-[#292929] py-40">
                 <div className="bg-[#3D3D3D] max-w-6xl mx-auto p-12">
                     <h4 className="text-white text-2xl pb-3">SIGN-IN</h4>
@@ -67,14 +76,21 @@ const Signin = () => {
                         </div>
 
                         {/* Submit */}
-                        <input type="submit" className="bg-white py-1 lg:py-3 px-3 lg:px-8 lg:text-xl block mt-2" />
+                        {
+                            loading ? <>
+                                <button className="py-1 lg:py-4 px-3 lg:px-14 lg:text-xl block mt-2 bg-white">
+                                    <FaSpinner className="animate-spin"></FaSpinner>
+                                </button>
+                            </> :
+                                <input type="submit" className={`${loading ? 'bg-black' : 'bg-white'} py-1 lg:py-3 px-3 lg:px-8 lg:text-xl block mt-2`} disabled={loading ? true : false} />
+                        }
                     </form>
                 </div>
 
-               <SocialLogin></SocialLogin>
-               <Link to="/signup">
-                <p className='text-white mt-8 mb-4 text-center'>New here? <span className='font-bold '> Create a New Account</span></p>
-            </Link>
+                <SocialLogin></SocialLogin>
+                <Link to="/signup">
+                    <p className='text-white mt-8 mb-4 text-center'>New here? <span className='font-bold '> Create a New Account</span></p>
+                </Link>
             </div>
         </>
     );

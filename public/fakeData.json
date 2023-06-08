@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Fundamentals of Photography",
+        "instructors" : "JOHN GREENGO",
+        "image": "",
+        "price": "12",
+        "available_seat": "5",
+        "students" : "309"
+    },
+    {
+        "title": "Newborn Photography Bootcamp",
+        "instructors" : "KELLY BROWN",
+        "image": "",
+        "price": "8",
+        "available_seat": "2",
+        "students" : ""
+    }
+]
