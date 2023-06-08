@@ -1,7 +1,7 @@
 
 const LearnNewSkill = () => {
     return (
-        <section className="my-container grid lg:grid-cols-3 gap-10 justify-center items-center">
+        <section className="my-container grid lg:grid-cols-3 gap-10 justify-center items-center px-2 md:px-0">
             <div>
                 <img src="https://downloads.creativelive.com/homepage/values-image1.jpg" alt="LEARN REAL SKILLS" />
             </div>

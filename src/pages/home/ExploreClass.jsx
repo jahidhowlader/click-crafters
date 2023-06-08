@@ -1,49 +1,28 @@
 import { useLoaderData } from "react-router-dom";
-import TopCoursesCard from "./TopCoursesCard";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-
-// import "./styles.css";
-
-// import required modules
-import { FreeMode, Pagination } from "swiper";
+import SwiperCard from "./SwiperCard";
 
 const ExploreClass = () => {
 
     const courses = useLoaderData()
     const topSellingCourses = courses.sort((a, b) => +b.students - +a.students).slice(0, 6)
-    console.log(topSellingCourses);
 
     return (
-        <section className="py-32 my-container ">
+        <section className="py-16 md:py-32 my-container px-2 md:px-0">
             <h2 className="text-center font-bold text-3xl">Explore our classes</h2>
 
-            <Swiper
-                slidesPerView={4}
-                spaceBetween={30}
-                freeMode={true}
-                pagination={{
-                    clickable: true,
-                }}
-                modules={[FreeMode, Pagination]}
-                className="mySwiper"
-            >
-                {
-                    topSellingCourses.map((course, idx) =>
-                        <SwiperSlide key={idx}>
-                            <TopCoursesCard
-                                course={course}
-                            ></TopCoursesCard>
-                        </SwiperSlide>
+            <div className="hidden md:block">
+                <SwiperCard
+                    topSellingCourses={topSellingCourses}
+                    slidesPerView={4}
+                ></SwiperCard>
+            </div>
 
-                      
-                    )
-                }
-            </Swiper>
+            <div className="md:hidden">
+                <SwiperCard
+                    topSellingCourses={topSellingCourses}
+                    slidesPerView={1}
+                ></SwiperCard>
+            </div>
         </section>
     );
 };

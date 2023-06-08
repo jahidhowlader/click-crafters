@@ -1,7 +1,22 @@
+import { useNavigate } from "react-router-dom";
+import useAuthContext from "../../hook/useAuthContext";
 
 const CoursesCard = ({ course }) => {
+    // Auth Context
+    const {user} = useAuthContext()
 
+    // get Data from Explore class using props
     const { thumbnail, title, instructors_name, available_seat, price } = course
+
+    // Navigator hook for redirect routes
+    const navigator = useNavigate()
+
+    // handlerEnroll
+    const handlerSelect = () => {
+        if(!user){
+            navigator('/signin')
+        }
+    }
 
     return (
         <div className={`${available_seat == 0 ? 'bg-orange' : 'bg-primary-clr'} text-white flex flex-col justify-between`}>
@@ -18,7 +33,7 @@ const CoursesCard = ({ course }) => {
             </div>
             <div>
                 <hr className="border-white border-opacity-30 " />
-                <button className="px-3 text-xl text-blue opacity-70 font-medium uppercase py-3" disabled={available_seat == 0 ? true : false}>Course Enrole</button>
+                <button onClick={handlerSelect} className="px-3 text-xl text-blue opacity-70 font-medium uppercase py-3" disabled={available_seat == 0 ? true : false}>Course Select</button>
             </div>
         </div>
     );

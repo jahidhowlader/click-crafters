@@ -5,9 +5,9 @@ import Logo from "../logo/Logo";
 const Footer = () => {
 
     return (
-        <footer className="footer p-10 bg-primary-clr text-white mx-auto items-center justify-around">
+        <footer className="footer lg:p-10 bg-primary-clr text-white mx-auto items-center justify-around">
             <div>
-                <div className="-ml-4">
+                <div className="-ml-4 pt-12 lg:pt-0 -mb-2 lg:-mb-0">
                     <Logo></Logo>
                 </div>
                 <p>Hasbro Industries Ltd.<br />Providing reliable toy since 1992</p>

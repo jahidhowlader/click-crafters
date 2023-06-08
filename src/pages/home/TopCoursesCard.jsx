@@ -1,9 +1,25 @@
 // Import Swiper React components
+import { useNavigate } from 'react-router-dom';
+import useAuthContext from '../../hook/useAuthContext';
 import './TopCoursesCard.css'
 
 const TopCoursesCard = ({ course }) => {
 
+    // Auth Context
+    const {user} = useAuthContext()
+
+    // get Data from Explore class using props
     const { title, thumbnail, students, available_seat } = course
+
+    // Navigator hook for redirect routes
+    const navigator = useNavigate()
+
+    // handlerEnroll
+    const handlerSelect = () => {
+        if(!user){
+            navigator('/signin')
+        }
+    }
 
     return (
         <div className={`shadow-lg ${available_seat == 0 ? 'bg-orange' : 'bg-white'} h-[400px]  relative flex flex-col justify-between`}>
@@ -22,8 +38,8 @@ const TopCoursesCard = ({ course }) => {
             </div>
 
             <div className='px-3'>
-                <button className={`${available_seat == 0 ? 'bg-white' : 'bg-blue hover:bg-primary-clr hover:text-white'} w-full text-center mb-5 uppercase py-2 font-bold`}
-                    disabled={available_seat == 0 ? true : false}>Enroll</button>
+                <button onClick={handlerSelect} className={`${available_seat == 0 ? 'bg-white' : 'bg-blue hover:bg-primary-clr hover:text-white'} w-full text-center mb-5 uppercase py-2 font-bold`}
+                    disabled={available_seat == 0 ? true : false}>Select</button>
             </div>
         </div>
     );

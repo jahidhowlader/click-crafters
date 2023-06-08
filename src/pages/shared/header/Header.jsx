@@ -48,16 +48,18 @@ const header = () => {
         <nav className="navbar bg-primary-clr text-white fixed z-10 px-10 border-b-2">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                    <label tabIndex={0} className="btn btn-ghost lg:hidden -ml-10 mr-0 pr-0">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-black  w-52 uppercase">
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content -ml-8 mt-3 p-2 shadow bg-primary-clr  w-80 uppercase">
                         {navOption}
                     </ul>
                 </div>
 
                 {/* Logo */}
-                <Logo></Logo>
+                <div className="flex flex-wrap">
+                    <Logo></Logo>
+                </div>
             </div>
 
             <div className="navbar-end hidden lg:flex">
