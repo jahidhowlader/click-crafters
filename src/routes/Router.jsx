@@ -12,6 +12,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import SelectedClass from "../pages/dashboard/selectedClass/SelectedClass";
 import EnrolledClasses from "../pages/dashboard/enrolledClasses/EnrolledClasses";
 import PrivateRoutes from "./PrivateRoutes";
+import Users from "../pages/dashboard/users/Users";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
         children: [
+            {
+                path: 'users',
+                element: <Users></Users>
+            },
             {
                 path: 'selected-classes',
                 element: <SelectedClass></SelectedClass>

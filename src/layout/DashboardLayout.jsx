@@ -3,13 +3,13 @@ import Logo from "../pages/shared/logo/Logo";
 
 const DashboardLayout = () => {
 
-    const isAdmin = false
+    const isAdmin = true
     const isInsturctor = false
 
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content p-32">
+            <div className="drawer-content px-32">
                 {/* Page content here */}
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                 <Outlet></Outlet>
@@ -26,7 +26,7 @@ const DashboardLayout = () => {
                     {
                         isAdmin ?
                             <>
-                                <li><NavLink to='/dashboard/manage-users' className={({ isActive }) => isActive ? 'text-orange ' : ''}>Manage Users</NavLink></li>
+                                <li><NavLink to='/dashboard/users' className={({ isActive }) => isActive ? 'text-orange ' : ''}>Manage Users</NavLink></li>
                                 {/* <li><NavLink to='/dashboard/enrolled-classes' className={({ isActive }) => isActive ? 'text-orange font-bold' : ''}>Enrolled Classes</NavLink></li> */}
                             </> :
                             isInsturctor ?

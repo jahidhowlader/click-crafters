@@ -48,7 +48,8 @@ const Signup = () => {
 
                                 const savedUser = {
                                     name: data.name,
-                                    email: data.email
+                                    email: data.email,
+                                    role: 'user'
                                 }
 
                                 fetch('http://localhost:5000/users', {

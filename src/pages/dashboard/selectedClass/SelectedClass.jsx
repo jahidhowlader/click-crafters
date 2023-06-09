@@ -68,7 +68,7 @@ const SelectedClass = () => {
     }
 
     return (
-        <section>
+        <section className="py-32">
             <h3 className="text-3xl font-bold uppercase">My Selected Courses</h3>
 
             <div className="overflow-x-auto my-8">

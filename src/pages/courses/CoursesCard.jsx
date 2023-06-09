@@ -67,7 +67,7 @@ const CoursesCard = ({ course }) => {
             </div>
             <div>
                 <hr className="border-white border-opacity-30 " />
-                <button onClick={handlerSelect} className="px-3 text-xl text-blue opacity-70 font-medium uppercase py-3" disabled={available_seat == 0 ? true : false}>Course Select</button>
+                <button onClick={handlerSelect} className={`px-3 text-xl ${available_seat == 0 ? 'text-white' : 'text-blue opacity-70'}  font-medium uppercase py-3`} disabled={available_seat == 0 ? true : false}>Course Select</button>
             </div>
         </div>
     );

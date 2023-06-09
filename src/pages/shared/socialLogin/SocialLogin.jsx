@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const SocialLogin = () => {
 
     // Context API
-    const { user, loading, setLoading, googleSignin } = useAuthContext()
+    const { loading, setLoading, googleSignin } = useAuthContext()
 
     // Navigate for redirect
     const navigate = useNavigate()
@@ -18,11 +18,13 @@ const SocialLogin = () => {
     const handlerGoogleSignin = () => {
 
         googleSignin()
-            .then(() => {
+            .then(result => {
 
+                const logedinUser = result.user
                 const savedUser = {
-                    name: user?.displayName,
-                    email: user?.email
+                    name: logedinUser.displayName,
+                    email: logedinUser.email,
+                    role: 'user'
                 }
 
                 fetch('http://localhost:5000/users', {
