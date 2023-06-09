@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import SocialLogin from "../../shared/socialLogin/SocialLogin";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthContext from "../../../hook/useAuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -21,7 +21,12 @@ const Signin = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const navigate = useNavigate()
+     // Navigate for redirect
+     const navigate = useNavigate()
+
+     const location = useLocation()
+     const from = location?.state?.from?.pathname || '/'
+
     const onSubmit = data => {
 
         signIn(data.email, data.password)
@@ -39,7 +44,7 @@ const Signin = () => {
                     progress: undefined,
                     theme: "colored",
                 });
-                navigate('/')
+                navigate(from, {replace: true})
             })
             .catch(e => {
                 
@@ -88,8 +93,8 @@ const Signin = () => {
                 </div>
 
                 <SocialLogin></SocialLogin>
-                <Link to="/signup">
-                    <p className='text-white mt-8 mb-4 text-center'>New here? <span className='font-bold '> Create a New Account</span></p>
+                <Link to="/signup" state={location.state}>
+                    <p className='text-white mt-8 mb-4 text-center' >New here? <span className='font-bold '> Create a New Account</span></p>
                 </Link>
             </div>
         </>

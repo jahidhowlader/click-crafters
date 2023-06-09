@@ -10,7 +10,8 @@ export default {
       "black": "#000",
       "white": "#fff",
       "blue": "#18D7DA",
-      "orange": "#FFA400"
+      "orange": "#FFA400",
+      "red": "#DC3545"
     },
     extend: {},
   },

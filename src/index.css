@@ -17,3 +17,9 @@ body {
 .logo-font{
   font-family: 'Alex Brush', cursive;
 }
+
+.swal2-cancel{
+  background: #DC3545;
+  margin: 0 5px;
+  color: white;
+}

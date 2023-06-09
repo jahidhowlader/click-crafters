@@ -1,24 +1,50 @@
 import Swal from "sweetalert2";
 import useAuthContext from "../../../hook/useAuthContext";
 import { FaSpinner } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
 
     // Context API
-    const { loading, setLoading, googleSignin } = useAuthContext()
+    const { user, loading, setLoading, googleSignin } = useAuthContext()
 
     // Navigate for redirect
     const navigate = useNavigate()
+
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     // handlerGoogleSignin
     const handlerGoogleSignin = () => {
 
         googleSignin()
             .then(() => {
-                
-                setLoading(false)
-                navigate('/')
+
+                const savedUser = {
+                    name: user?.displayName,
+                    email: user?.email
+                }
+
+                fetch('http://localhost:5000/users', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+
+                        setLoading(false)
+                        navigate(from, { replace: true })
+                    })
+                    .catch(e => {
+                        setLoading(false)
+                        Swal.fire({
+                            icon: 'error',
+                            title: `<span >${e.code}</span>`,
+                        })
+                    })
             })
             .catch(e => {
                 setLoading(false)

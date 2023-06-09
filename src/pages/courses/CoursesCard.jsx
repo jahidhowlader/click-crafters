@@ -1,21 +1,55 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hook/useAuthContext";
+import { toast } from "react-toastify";
 
 const CoursesCard = ({ course }) => {
     // Auth Context
-    const {user} = useAuthContext()
+    const { user } = useAuthContext()
 
     // get Data from Explore class using props
-    const { thumbnail, title, instructors_name, available_seat, price } = course
+    const { thumbnail, title, instructors_name, available_seat, price, _id } = course
 
     // Navigator hook for redirect routes
     const navigator = useNavigate()
+    const location = useLocation()
 
     // handlerEnroll
     const handlerSelect = () => {
-        if(!user){
-            navigator('/signin')
+        if (!user) {
+            return navigator('/signin', { state: { from: location } })
         }
+
+        const selectedCourse = {
+            course_id: _id,
+            title,
+            instructors_name,
+            price,
+            email: user.email
+        }
+
+        fetch('http://localhost:5000/selected-courses', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(selectedCourse)
+        })
+        .then(()=> {
+            
+            toast.success('Successfully Added Course', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        })
+        .catch(e => {
+            console.log(e);
+        })
     }
 
     return (

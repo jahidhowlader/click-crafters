@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import useAuthContext from "../../../hook/useAuthContext";
 import SocialLogin from "../../shared/socialLogin/SocialLogin";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { FaSpinner } from "react-icons/fa";
@@ -13,6 +13,12 @@ const Signup = () => {
     const { loading, setLoading, signUp, updateUser } = useAuthContext()
 
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+
+    // Navigate for redirect
+    const navigate = useNavigate()
+
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     const onSubmit = data => {
 
@@ -40,12 +46,38 @@ const Signup = () => {
                         updateUser(data.name, img)
                             .then(() => {
 
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: `<span >Successfully Create Account, Thanks!</span>`,
+                                const savedUser = {
+                                    name: data.name,
+                                    email: data.email
+                                }
+
+                                fetch('http://localhost:5000/users', {
+                                    method: "POST",
+                                    headers: {
+                                        "content-type": "application/json"
+                                    },
+                                    body: JSON.stringify(savedUser)
                                 })
-                                reset()
-                                setLoading(false)
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        if (data.insertedId) {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: `<span >Successfully Create Account, Thanks!</span>`,
+                                            })
+                                            reset()
+                                            setLoading(false)
+                                            navigate(from, { replace: true })
+                                        }
+                                    })
+                                    .catch(e => {
+
+                                        setLoading(false)
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: `<span >${e.code}</span>`,
+                                        })
+                                    })
                             })
                             .catch(e => {
 

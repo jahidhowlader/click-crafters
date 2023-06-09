@@ -33,6 +33,11 @@ const header = () => {
         {
             user ? <>
                 <li>
+                    <button >
+                        <Link to="/dashboard">DASHBOARD</Link>
+                    </button>
+                </li>
+                <li>
                     <button onClick={handlerLogout}>
                         <Link to="/">SIGNOUT</Link>
                     </button>
