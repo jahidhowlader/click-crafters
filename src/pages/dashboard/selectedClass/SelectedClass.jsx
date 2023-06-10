@@ -6,8 +6,6 @@ const SelectedClass = () => {
 
     const [selectedCourses, refetch] = useSelectedCourse()
 
-    // console.log(selectedCourses);
-
     // handlerDeleteItem
     const handlerDeleteItem = (_id) => {
 
@@ -48,7 +46,7 @@ const SelectedClass = () => {
                     .catch(e => {
                         Swal.fire({
                             icon: 'error',
-                            title: `<span >${e.code}</span>`,
+                            title: `<span >${e}</span>`,
                         })
                     })
 
@@ -63,8 +61,6 @@ const SelectedClass = () => {
                 )
             }
         })
-
-
     }
 
     return (

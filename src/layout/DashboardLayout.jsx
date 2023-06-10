@@ -3,7 +3,7 @@ import Logo from "../pages/shared/logo/Logo";
 
 const DashboardLayout = () => {
 
-    const isAdmin = true
+    const isAdmin = false
     const isInsturctor = false
 
     return (

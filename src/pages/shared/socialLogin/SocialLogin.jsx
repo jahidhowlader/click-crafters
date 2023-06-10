@@ -27,6 +27,8 @@ const SocialLogin = () => {
                     role: 'user'
                 }
 
+                setLoading(false)
+
                 fetch('http://localhost:5000/users', {
                     method: "POST",
                     headers: {

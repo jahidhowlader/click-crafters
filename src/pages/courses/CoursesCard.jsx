@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuthContext from "../../hook/useAuthContext";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const CoursesCard = ({ course }) => {
     // Auth Context
@@ -48,7 +49,10 @@ const CoursesCard = ({ course }) => {
             });
         })
         .catch(e => {
-            console.log(e);
+            Swal.fire({
+                icon: 'error',
+                title: `<span >${e}</span>`,
+            })
         })
     }
 
