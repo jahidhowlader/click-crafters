@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuthContext from "../../../hook/useAuthContext";
 import Logo from "../logo/Logo";
+import Swal from "sweetalert2";
 
 const header = () => {
 
@@ -22,6 +23,12 @@ const header = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+            })
+            .catch(e => {
+                Swal.fire({
+                    icon: 'error',
+                    title: `<span >${e.code}</span>`,
+                })
             })
     }
 

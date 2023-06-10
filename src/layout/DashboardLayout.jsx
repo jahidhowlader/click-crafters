@@ -1,10 +1,42 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Logo from "../pages/shared/logo/Logo";
+import useAdmin from "../hook/useAdmin";
+import useAuthContext from "../hook/useAuthContext";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const DashboardLayout = () => {
 
-    const isAdmin = false
+    // const isAdmin = false
     const isInsturctor = false
+    const [isAdmin] = useAdmin()
+
+    // Auth Context API
+    const {logOut} = useAuthContext()
+
+    // henslerLogout
+    const henslerLogout =() => {
+
+        logOut()
+        .then(() => {
+            toast.success('Successfully Logout', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        })
+        .catch(e => {
+            Swal.fire({
+                icon: 'error',
+                title: `<span >${e.code}</span>`,
+            })
+        })
+    }
 
     return (
         <div className="drawer lg:drawer-open">
@@ -44,6 +76,7 @@ const DashboardLayout = () => {
                     <li> <Link to="/" >Home</Link></li>
                     <li> <Link to="/courses" >Courses</Link></li>
                     <li> <Link to="/instructors" >Instructors</Link></li>
+                    <li onClick={henslerLogout}> <Link to="/signin">Sign out</Link></li>
                 </ul>
 
             </div>

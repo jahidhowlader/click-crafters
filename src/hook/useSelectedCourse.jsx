@@ -4,12 +4,12 @@ import useAxiosSecure from './useAxiosSecure';
 
 const useSelectedCourse = () => {
 
-    const { user } = useAuthContext()
-    // const token = localStorage.getItem('access-token')
+    const { user, loading } = useAuthContext()
     const [axiosSecure] = useAxiosSecure()
 
     const { refetch, data: selectedCourses = [] } = useQuery({
         queryKey: ['selected-courses', user?.email],
+        enabled: !loading,
         queryFn: async () => {
             const res = await axiosSecure(`/selected-courses?email=${user?.email}`)
             return res.data
