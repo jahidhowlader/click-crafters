@@ -4,38 +4,38 @@ import useAdmin from "../hook/useAdmin";
 import useAuthContext from "../hook/useAuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useInstructor from "../hook/useInstructor";
 
 const DashboardLayout = () => {
 
-    // const isAdmin = false
-    const isInsturctor = false
     const [isAdmin] = useAdmin()
+    const [isInstructor] = useInstructor()
 
     // Auth Context API
-    const {logOut} = useAuthContext()
+    const { logOut } = useAuthContext()
 
     // henslerLogout
-    const henslerLogout =() => {
+    const henslerLogout = () => {
 
         logOut()
-        .then(() => {
-            toast.success('Successfully Logout', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        })
-        .catch(e => {
-            Swal.fire({
-                icon: 'error',
-                title: `<span >${e.code}</span>`,
+            .then(() => {
+                toast.success('Successfully Logout', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             })
-        })
+            .catch(e => {
+                Swal.fire({
+                    icon: 'error',
+                    title: `<span >${e.code}</span>`,
+                })
+            })
     }
 
     return (
@@ -59,11 +59,11 @@ const DashboardLayout = () => {
                         isAdmin ?
                             <>
                                 <li><NavLink to='/dashboard/users' className={({ isActive }) => isActive ? 'text-orange ' : ''}>Manage Users</NavLink></li>
-                                {/* <li><NavLink to='/dashboard/enrolled-classes' className={({ isActive }) => isActive ? 'text-orange font-bold' : ''}>Enrolled Classes</NavLink></li> */}
+                                <li><NavLink to='/dashboard/manage-classes' className={({ isActive }) => isActive ? 'text-orange font-bold' : ''}>Manage Classes</NavLink></li>
                             </> :
-                            isInsturctor ?
+                            isInstructor ?
                                 <>
-                                    <li><NavLink to='/dashboard/add-class' className={({ isActive }) => isActive ? 'text-orange ' : ''}>Add a Class</NavLink></li>
+                                    <li><NavLink to='/dashboard/add-class' className={({ isActive }) => isActive ? 'text-orange ' : ''}>Add Class</NavLink></li>
                                     <li><NavLink to='/dashboard/my-classes' className={({ isActive }) => isActive ? 'text-orange ' : ''}>My Classes</NavLink></li>
                                 </> :
                                 <>

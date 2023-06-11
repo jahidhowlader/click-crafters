@@ -152,7 +152,7 @@ const Signup = () => {
                         </div>
 
                         <div>
-                            <input type="file" placeholder="Photo URL" {...register("photoURL", { required: true })} className={`bg-transparent text-white my-2`} />
+                            <input type="file" placeholder="Photo URL" {...register("photoURL", { required: true })} className="file-input file-input-bordered w-full max-w-xs my-2" />
                             {errors.photoURL && <span className='text-orange block'>PhotoURL is required</span>}
                         </div>
 

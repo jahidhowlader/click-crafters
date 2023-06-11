@@ -13,6 +13,11 @@ import SelectedClass from "../pages/dashboard/selectedClass/SelectedClass";
 import EnrolledClasses from "../pages/dashboard/enrolledClasses/EnrolledClasses";
 import PrivateRoutes from "./PrivateRoutes";
 import Users from "../pages/dashboard/users/Users";
+import ManageClasses from "../pages/dashboard/manageClasses/ManageClasses";
+import AdminRoutes from "./AdminRoutes";
+import MyClasses from "../pages/dashboard/instructorPage/myClasses/MyClasses";
+import AddClass from "../pages/dashboard/instructorPage/addClass/AddClass";
+import InstructorRoutes from "./InstructorRoutes";
 
 const router = createBrowserRouter([
     {
@@ -45,7 +50,7 @@ const router = createBrowserRouter([
                 path: "instructors",
                 element: <Instructors></Instructors>,
                 loader: () => fetch('/public/fakeData.json')
-            },
+            },  
         ]
     },
     {
@@ -54,7 +59,19 @@ const router = createBrowserRouter([
         children: [
             {
                 path: 'users',
-                element: <Users></Users>
+                element: <AdminRoutes><Users></Users></AdminRoutes>
+            },
+            {
+                path: 'manage-classes',
+                element: <AdminRoutes><ManageClasses></ManageClasses></AdminRoutes>
+            },
+            {
+                path: 'my-classes',
+                element: <InstructorRoutes><MyClasses></MyClasses></InstructorRoutes>
+            },
+            {
+                path: 'add-class',
+                element: <InstructorRoutes><AddClass></AddClass></InstructorRoutes>
             },
             {
                 path: 'selected-classes',

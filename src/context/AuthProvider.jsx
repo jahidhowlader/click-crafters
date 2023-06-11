@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [iconLoading, setIconLoading] = useState(false)
 
     console.log(user);
 
@@ -88,7 +89,9 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         loading,
+        iconLoading,
         setLoading,
+        setIconLoading,
         signUp,
         signIn,
         updateUser,
