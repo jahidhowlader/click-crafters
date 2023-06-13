@@ -19,7 +19,6 @@ import EnrolledClasses from "../pages/dashboard/userPage/enrolledClasses/Enrolle
 import Users from "../pages/dashboard/adminPage/users/Users";
 // import CheckOutForm from "../pages/dashboard/userPage/selectedClass/CheckOutForm";
 import Payment from "../pages/dashboard/userPage/selectedClass/Payment";
-// import ManageClasses from "../pages/dashboard/adminPage/manageClasses/ManageClasses";
 import ManageCourses from "../pages/dashboard/adminPage/manageClasses/ManageCourses";
 
 const router = createBrowserRouter([
@@ -34,7 +33,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch('/public/fakeData.json')
+                loader: () => fetch('http://localhost:5000/courses')
             },
             {
                 path: "signin",

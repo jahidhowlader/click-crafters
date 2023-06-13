@@ -19,8 +19,6 @@ const MyClasses = () => {
         return res.data
     })
 
-    console.log(myClasses);
-
     return (
         <>
             <Helmet>

@@ -3,8 +3,17 @@ import useAuthContext from "../../hook/useAuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import useAdmin from "../../hook/useAdmin";
+import useInstructor from "../../hook/useInstructor";
 
 const CoursesCard = ({ course }) => {
+
+    // Check Admin
+    const [isAdmin] = useAdmin()
+
+    // Check Instructor
+    const [isInstructor] = useInstructor()
+
     // Auth Context
     const { user } = useAuthContext()
 
@@ -15,7 +24,7 @@ const CoursesCard = ({ course }) => {
     const navigator = useNavigate()
     const location = useLocation()
 
-    // handlerEnroll
+    // handlerSELECT 
     const [disable, setDisable] = useState(false)
     const handlerSelect = () => {
         if (!user) {
@@ -73,7 +82,7 @@ const CoursesCard = ({ course }) => {
             </div>
             <div>
                 <hr className="border-white border-opacity-30 " />
-                <button onClick={handlerSelect} className={`px-3 text-xl ${(available_seat == 0 || disable) ? 'text-white' : 'text-blue opacity-70'}  font-medium uppercase py-3`} disabled={(available_seat == 0 || disable) ? true : false}>{disable ? 'Already Selected' : 'Course Select'}</button>
+                <button onClick={handlerSelect} className={`px-3 text-xl ${(available_seat == 0 || disable) ? 'text-white' : 'text-blue opacity-70'}  font-medium uppercase py-3`} disabled={(available_seat == 0 || disable || isAdmin || isInstructor) ? true : false}>{disable ? 'Already Selected' : 'Course Select'}</button>
             </div>
         </div>
     );

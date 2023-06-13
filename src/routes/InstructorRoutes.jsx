@@ -7,9 +7,6 @@ const InstructorRoutes = ({children}) => {
     const { user, loading } = useAuthContext()
     const [isInstructor, isInstructorLoading] = useInstructor()
 
-    console.log(isInstructor);
-
-
     if (loading || isInstructorLoading) {
         return <Loader></Loader>
     }

@@ -15,7 +15,6 @@ const Users = () => {
         return res.data
     })
 
-    console.log();
     // handlerUserAdmin
     const handlerUserAdmin = user => {
 
@@ -93,7 +92,6 @@ const Users = () => {
                                 body: JSON.stringify(instructorDetails)
                             })
                                 .then(res => res.json())
-                                .then(data => console.log(data))
                                 .catch(e => {
                                     Swal.fire({
                                         icon: 'error',

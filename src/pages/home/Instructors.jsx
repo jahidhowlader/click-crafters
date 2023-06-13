@@ -1,37 +1,52 @@
 import { useEffect, useState } from "react";
 import InstructorSwiperCard from "./InstructorSwiperCard";
+import Marquee from "react-fast-marquee";
+import axios from "axios";
+
 
 const Instructors = () => {
 
     const [instructors, setInstructors] = useState([])
     useEffect(() => {
 
-        fetch('/public/instructor.json')
-            .then(res => res.json())
+        axios.get('http://localhost:5000/instructor')
             .then(data => {
-                setInstructors(data)
+                setInstructors(data.data)
             })
     }, [])
-
-    // console.log(instructors);
 
     return (
         <section className="">
             <h2 className="text-center font-bold text-3xl">Learn from the industry icons</h2>
             <p className="text-center text-xl py-5">Pulitzer Prize winners. Cultural icons. Your new instructors. Unlock 700+ <br /> greats to inspire, teach, and support your passion.</p>
 
-            <div className="hidden md:block">
-                <InstructorSwiperCard
-                    topInstructors={instructors}
-                    slidesPerView={6}
-                ></InstructorSwiperCard>
+            <div className="hidden md:block py-12">
+
+                <Marquee speed={100} pauseOnHover>
+                    <div className="flex h-96">
+                        {
+                            instructors.map(instructor => <img
+                                key={instructor._id}
+                                src={instructor.image}
+                                className="mx-2.5 hover:opacity-80"
+                            ></img>)
+                        }
+                    </div>
+                </Marquee>
             </div>
 
-            <div className="md:hidden">
-                <InstructorSwiperCard
-                    topInstructors={instructors}
-                    slidesPerView={1}
-                ></InstructorSwiperCard>
+            <div className="md:hidden py-12">
+                <Marquee speed={100} pauseOnHover>
+                    <div className="flex h-96">
+                        {
+                            instructors.map(instructor => <img
+                                key={instructor._id}
+                                src={instructor.image}
+                                className="mx-2.5 hover:opacity-80"
+                            ></img>)
+                        }
+                    </div>
+                </Marquee>
             </div>
         </section>
     );

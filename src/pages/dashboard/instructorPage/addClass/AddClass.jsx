@@ -28,7 +28,6 @@ const AddClass = () => {
         })
             .then(data => data.json())
             .then(resImage => {
-                console.log(resImage);
 
                 if (resImage.success) {
 
@@ -45,8 +44,6 @@ const AddClass = () => {
                         thumbnail: imageUrl,
                         status: "pending"
                     }
-
-                    console.log(newCourse);
 
                     axiosSecure.post('/add-class', newCourse)
                         .then(newData => {

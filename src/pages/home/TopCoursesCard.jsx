@@ -2,23 +2,70 @@
 import { useNavigate } from 'react-router-dom';
 import useAuthContext from '../../hook/useAuthContext';
 import './TopCoursesCard.css'
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
+import useAdmin from '../../hook/useAdmin';
+import useInstructor from '../../hook/useInstructor';
 
 const TopCoursesCard = ({ course }) => {
 
+    // Check Admin
+    const [isAdmin] = useAdmin()
+
+    // Check Instructor
+    const [isInstructor] = useInstructor()
+
     // Auth Context
-    const {user} = useAuthContext()
+    const { user } = useAuthContext()
 
     // get Data from Explore class using props
-    const { title, thumbnail, students, available_seat } = course
+    const { _id, title, thumbnail, instructors_name, students, available_seat, price } = course
 
     // Navigator hook for redirect routes
     const navigator = useNavigate()
 
-    // handlerEnroll
+    // handlerSELECT 
+    const [disable, setDisable] = useState(false)
     const handlerSelect = () => {
-        if(!user){
-            navigator('/signin')
+        if (!user) {
+            return navigator('/signin', { state: { from: location } })
         }
+
+        const selectedCourse = {
+            course_id: _id,
+            title,
+            instructors_name,
+            price,
+            email: user.email
+        }
+
+        fetch('http://localhost:5000/selected-courses', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(selectedCourse)
+        })
+            .then(() => {
+                setDisable(true)
+                toast.success('Successfully Added Course', {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            })
+            .catch(e => {
+                Swal.fire({
+                    icon: 'error',
+                    title: `<span >${e}</span>`,
+                })
+            })
     }
 
     return (
@@ -38,9 +85,9 @@ const TopCoursesCard = ({ course }) => {
             </div>
 
             <div className='px-3'>
-                {/* TODO: ADD SELECT API */}
-                <button onClick={handlerSelect} className={`${available_seat == 0 ? 'bg-white text-black' : 'bg-blue hover:bg-primary-clr hover:text-white'} w-full text-center mb-5 uppercase py-2 font-bold`}
-                    disabled={available_seat == 0 ? true : false}>Select</button>
+                <button onClick={handlerSelect}
+                    className={`bg-blue hover:bg-primary-clr hover:text-white w-full text-center mb-5 uppercase py-2 font-bold ${available_seat == 0 || disable || isAdmin || isInstructor? 'hidden' : 'block'}`}>Select
+                </button>
             </div>
         </div>
     );

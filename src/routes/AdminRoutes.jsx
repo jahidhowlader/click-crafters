@@ -7,9 +7,6 @@ const AdminRoutes = ({children}) => {
     const { user, loading } = useAuthContext()
     const [isAdmin, isAdminLoading] = useAdmin()
 
-    console.log(isAdmin);
-
-
     if (loading || isAdminLoading) {
         return <Loader></Loader>
     }

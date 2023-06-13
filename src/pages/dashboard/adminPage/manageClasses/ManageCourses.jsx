@@ -43,7 +43,6 @@ const ManageCourses = () => {
     // handlerReveiwByApprove
     const handlerReveiwByApprove = async (course) => {
 
-        console.log(course);
         const { _id, thumbnail, title, instructors_name, instructors_email, price, available_seat, students } = course
 
 
@@ -78,9 +77,6 @@ const ManageCourses = () => {
                 })
             })
     }
-
-    console.log(pendingClass);
-
 
     return (
         <>
