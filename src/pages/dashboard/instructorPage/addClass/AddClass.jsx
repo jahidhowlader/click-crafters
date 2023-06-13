@@ -43,11 +43,12 @@ const AddClass = () => {
                         available_seat: avaiableSeat,
                         students: '0',
                         thumbnail: imageUrl,
+                        status: "pending"
                     }
 
                     console.log(newCourse);
 
-                    axiosSecure.post('/courses', newCourse)
+                    axiosSecure.post('/add-class', newCourse)
                         .then(newData => {
 
                             setIconLoading(false)

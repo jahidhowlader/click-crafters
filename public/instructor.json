@@ -1,0 +1,65 @@
+[
+    {
+        "_id": "6486284b2fc2edca6a12b86d",
+        "name": "LINDSAY ADLER",
+        "email": "instructors_email1@gmail.com",
+        "image": "https://i.ibb.co/8BcGfFx/800-4.jpg",
+        "role": "instructor"
+        },
+        {
+        "_id": "6486284b2fc2edca6a12b86e",
+        "name": "JOHN GREENGO",
+        "email": "instructors_email2@gmail.com",
+        "image": "https://i.ibb.co/qxqBp8m/800-1.jpg",
+        "role": "instructor"
+        },
+        {
+        "_id": "6486284b2fc2edca6a12b86f",
+        "name": "STEVE SWEATPANTS",
+        "email": "instructors_email3@gmail.com",
+        "image": "https://i.ibb.co/6w1ChbW/800-5.jpg",
+        "role": "instructor"
+        },
+        {
+        "_id": "6486284b2fc2edca6a12b870",
+        "name": "CHASE JARVIS",
+        "email": "instructors_email4@gmail.com",
+        "image": "https://i.ibb.co/wgr21yj/800-2.jpg",
+        "role": "instructor"
+        },
+        {
+        "_id": "6486284b2fc2edca6a12b871",
+        "name": "BEN WILLMORE",
+        "email": "instructors_email5@gmail.com",
+        "image": "https://i.ibb.co/1rfRQDy/800.jpg",
+        "role": "instructor"
+        },
+        {
+        "_id": "6486284b2fc2edca6a12b872",
+        "name": "KELLY BROWN",
+        "email": "instructors_email6@gmail.com",
+        "image": "https://i.ibb.co/Kzfyv8y/k1-instructors-ladler-640x640.jpg",
+        "role": "instructor"
+        },
+        {
+        "_id": "6486284b2fc2edca6a12b873",
+        "name": "BROOKE SHADEN",
+        "email": "instructors_email7@gmail.com",
+        "image": "https://i.ibb.co/0C5nY1j/k1-instructors-ksherk-640x640.jpg",
+        "role": "instructor"
+        },
+        {
+        "_id": "6486284b2fc2edca6a12b874",
+        "name": "NIGEL BARKER",
+        "email": "instructors_email8@gmail.com",
+        "image": "https://i.ibb.co/9HzMhY4/800-3.jpg",
+        "role": "instructor"
+        },
+        {
+        "_id": "6486284b2fc2edca6a12b875",
+        "name": "JOE MCNALLY",
+        "email": "instructors_email9@gmail.com",
+        "image": "https://i.ibb.co/vLvg1zt/800-6.jpg",
+        "role": "instructor"
+        }
+]

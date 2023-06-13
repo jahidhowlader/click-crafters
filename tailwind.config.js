@@ -11,7 +11,8 @@ export default {
       "white": "#fff",
       "blue": "#18D7DA",
       "orange": "#FFA400",
-      "red": "#DC3545"
+      "red": "#DC3545",
+      "green": "#0F8277"
     },
     extend: {},
   },

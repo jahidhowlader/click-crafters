@@ -59,7 +59,7 @@ const CoursesCard = ({ course }) => {
     }
 
     return (
-        <div className={`${available_seat == 0 ? 'bg-orange' : 'bg-primary-clr'} text-white flex flex-col justify-between`}>
+        <div className={`${available_seat == 0 ? 'bg-red' : 'bg-primary-clr'} text-white flex flex-col justify-between`}>
             <div>
                 <div>
                     <img src={thumbnail} alt={title} className="w-full h-[250px]" />
@@ -73,7 +73,7 @@ const CoursesCard = ({ course }) => {
             </div>
             <div>
                 <hr className="border-white border-opacity-30 " />
-                <button onClick={handlerSelect} className={`px-3 text-xl ${(available_seat == 0 || disable) ? 'text-white' : 'text-blue opacity-70'}  font-medium uppercase py-3`} disabled={(available_seat == 0 || disable) ? true : false}>Course Select</button>
+                <button onClick={handlerSelect} className={`px-3 text-xl ${(available_seat == 0 || disable) ? 'text-white' : 'text-blue opacity-70'}  font-medium uppercase py-3`} disabled={(available_seat == 0 || disable) ? true : false}>{disable ? 'Already Selected' : 'Course Select'}</button>
             </div>
         </div>
     );

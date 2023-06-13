@@ -24,7 +24,7 @@ const Footer = () => {
 
 
 
-            <div>
+            <div className="pb-12 md:pb-0">
                 <div className="grid grid-flow-col gap-4 text-3xl">
 
                     <Link to="https://twitter.com/JahidHowlader10" target="_blank">

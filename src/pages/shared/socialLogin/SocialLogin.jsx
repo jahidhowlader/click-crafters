@@ -60,7 +60,7 @@ const SocialLogin = () => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-5 md:mx-auto">
             {
                 loading ?
                     <button className="bg-blue bg-opacity-60 text-white w-full py-3 mt-5 "><FaSpinner className="animate-spin text-center mx-auto"></FaSpinner></button> :

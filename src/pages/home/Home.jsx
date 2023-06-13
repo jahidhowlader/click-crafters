@@ -16,6 +16,11 @@ const Home = () => {
             <LearnNewSkill></LearnNewSkill>
             <ExploreClass></ExploreClass>
             <Instructors></Instructors>
+
+            {/* <div className="flex items-center justify-center">
+                <p>1</p>
+                <p>2</p>
+            </div> */}
         </>
     );
 };

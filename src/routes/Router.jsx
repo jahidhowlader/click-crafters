@@ -6,18 +6,21 @@ import Home from "../pages/home/Home";
 import Error from "../pages/error/Error";
 import Signin from "../pages/authentication/signin/Signin";
 import Signup from "../pages/authentication/signup/Signup";
-import Instructors from "../pages/instructors/Instructors";
+import Instructors from "../pages/instructors/InstructorsPage";
 import Courses from "../pages/courses/Courses";
 import DashboardLayout from "../layout/DashboardLayout";
-import SelectedClass from "../pages/dashboard/selectedClass/SelectedClass";
-import EnrolledClasses from "../pages/dashboard/enrolledClasses/EnrolledClasses";
 import PrivateRoutes from "./PrivateRoutes";
-import Users from "../pages/dashboard/users/Users";
-import ManageClasses from "../pages/dashboard/manageClasses/ManageClasses";
 import AdminRoutes from "./AdminRoutes";
 import MyClasses from "../pages/dashboard/instructorPage/myClasses/MyClasses";
 import AddClass from "../pages/dashboard/instructorPage/addClass/AddClass";
 import InstructorRoutes from "./InstructorRoutes";
+import SelectedClass from "../pages/dashboard/userPage/selectedClass/SelectedClass";
+import EnrolledClasses from "../pages/dashboard/userPage/enrolledClasses/EnrolledClasses";
+import Users from "../pages/dashboard/adminPage/users/Users";
+// import CheckOutForm from "../pages/dashboard/userPage/selectedClass/CheckOutForm";
+import Payment from "../pages/dashboard/userPage/selectedClass/Payment";
+// import ManageClasses from "../pages/dashboard/adminPage/manageClasses/ManageClasses";
+import ManageCourses from "../pages/dashboard/adminPage/manageClasses/ManageCourses";
 
 const router = createBrowserRouter([
     {
@@ -49,8 +52,8 @@ const router = createBrowserRouter([
             {
                 path: "instructors",
                 element: <Instructors></Instructors>,
-                loader: () => fetch('/public/fakeData.json')
-            },  
+                loader: () => fetch('http://localhost:5000/instructor')
+            },
         ]
     },
     {
@@ -58,12 +61,16 @@ const router = createBrowserRouter([
         element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
         children: [
             {
-                path: 'users',
-                element: <AdminRoutes><Users></Users></AdminRoutes>
+                path: 'selected-classes',
+                element: <SelectedClass></SelectedClass>
             },
             {
-                path: 'manage-classes',
-                element: <AdminRoutes><ManageClasses></ManageClasses></AdminRoutes>
+                path: 'enrolled-classes',
+                element: <EnrolledClasses></EnrolledClasses>
+            },
+            {
+                path: 'payment',
+                element: <Payment></Payment>
             },
             {
                 path: 'my-classes',
@@ -74,12 +81,12 @@ const router = createBrowserRouter([
                 element: <InstructorRoutes><AddClass></AddClass></InstructorRoutes>
             },
             {
-                path: 'selected-classes',
-                element: <SelectedClass></SelectedClass>
+                path: 'users',
+                element: <AdminRoutes><Users></Users></AdminRoutes>
             },
             {
-                path: 'enrolled-classes',
-                element: <EnrolledClasses></EnrolledClasses>
+                path: 'manage-classes',
+                element: <AdminRoutes><ManageCourses></ManageCourses></AdminRoutes>
             }
         ]
     }

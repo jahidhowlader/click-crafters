@@ -49,6 +49,7 @@ const Signup = () => {
                                 const savedUser = {
                                     name: data.name,
                                     email: data.email,
+                                    image: img,
                                     role: 'user'
                                 }
 
@@ -112,12 +113,12 @@ const Signup = () => {
                 <title>Signup | Click Crafters</title>
             </Helmet>
             <div className="bg-[#292929] py-40">
-                <div className="bg-[#3D3D3D] max-w-6xl mx-auto p-12">
+                <div className="bg-[#3D3D3D] max-w-6xl mx-5 md:mx-auto p-5 md:p-12">
                     <h4 className="text-white text-2xl pb-3">SIGN-UP</h4>
 
                     <form onSubmit={handleSubmit(onSubmit)} >
 
-                        <div className="grid grid-cols-2 gap-x-5">
+                        <div className="grid md:grid-cols-2 gap-x-5">
 
                             <div>
                                 {/* Name */}
@@ -134,7 +135,7 @@ const Signup = () => {
 
                         </div>
 
-                        <div className="grid grid-cols-2 gap-x-5">
+                        <div className="grid md:grid-cols-2 gap-x-5">
 
                             <div>
                                 {/* Password */}

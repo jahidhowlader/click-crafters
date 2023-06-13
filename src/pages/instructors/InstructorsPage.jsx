@@ -2,10 +2,9 @@ import { Helmet } from 'react-helmet-async';
 import { useLoaderData } from 'react-router-dom';
 import InstructorCard from './InstructorCard';
 
-const Instructors = () => {
+const InstructorsPage = () => {
 
     const instructors = useLoaderData()
-    console.log(instructors);
 
     return (
         <>
@@ -18,10 +17,10 @@ const Instructors = () => {
 
                 <div className='grid grid-cols-4 gap-x-3 gap-y-5 py-12'>
                     {
-                        instructors.map(instructor => <InstructorCard
-                        key={instructor.title}
-                        instructor={instructor}
-                        ></InstructorCard> )
+                        instructors.map((instructor, idx) => <InstructorCard
+                            key={idx}
+                            instructor={instructor}
+                        ></InstructorCard>)
                     }
                 </div>
             </section>
@@ -29,4 +28,4 @@ const Instructors = () => {
     );
 };
 
-export default Instructors;
+export default InstructorsPage;

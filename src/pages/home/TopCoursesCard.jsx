@@ -22,10 +22,10 @@ const TopCoursesCard = ({ course }) => {
     }
 
     return (
-        <div className={`shadow-lg ${available_seat == 0 ? 'bg-orange' : 'bg-white'} h-[400px]  relative flex flex-col justify-between`}>
+        <div className={`shadow-lg ${available_seat == 0 ? 'bg-red text-white' : 'bg-white'} h-[400px]  relative flex flex-col justify-between`}>
             <div>
                 <div className={`absolute top-2 right-2 ${available_seat == 0 ? 'block' : 'hidden'}`}>
-                    <p className='bg-orange px-5 py-2 font-bold'>Reserved</p>
+                    <p className='bg-red px-5 py-2 font-bold'>Reserved</p>
                 </div>
                 <img src={thumbnail} alt={title} />
                 <div className='p-3'>
@@ -38,7 +38,8 @@ const TopCoursesCard = ({ course }) => {
             </div>
 
             <div className='px-3'>
-                <button onClick={handlerSelect} className={`${available_seat == 0 ? 'bg-white' : 'bg-blue hover:bg-primary-clr hover:text-white'} w-full text-center mb-5 uppercase py-2 font-bold`}
+                {/* TODO: ADD SELECT API */}
+                <button onClick={handlerSelect} className={`${available_seat == 0 ? 'bg-white text-black' : 'bg-blue hover:bg-primary-clr hover:text-white'} w-full text-center mb-5 uppercase py-2 font-bold`}
                     disabled={available_seat == 0 ? true : false}>Select</button>
             </div>
         </div>
