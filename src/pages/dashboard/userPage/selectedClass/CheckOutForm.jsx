@@ -8,8 +8,6 @@ import './CheckOutForm.css'
 
 const CheckOutForm = ({ price, course }) => {
 
-    console.log(course);
-
     const stripe = useStripe()
     const elements = useElements()
     const { user } = useAuthContext()
@@ -49,17 +47,15 @@ const CheckOutForm = ({ price, course }) => {
             return;
         }
 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card
         })
 
         if (error) {
-            console.log('error', error.message);
             setCardError(error.message)
         } else {
             setCardError('')
-            console.log('payment method', paymentMethod);
         }
 
         setProcessing(true)
@@ -90,16 +86,9 @@ const CheckOutForm = ({ price, course }) => {
                 email: user?.email,
                 transactionID: paymentIntent.id,
                 price: course.price,
-                date: new Date()
+                date: new Date(),
+                course
             }
-
-            // fetch(`http://localhost:5000/course/${course.course_id}`, {
-            //     method: "PATCH",
-            //     headers: {
-            //         "content-type": "application/json"
-            //     },
-            //     body: JSON.stringify(course)
-            // })
 
             axiosSecure.post('/payments', { paymentDetails })
                 .then(res => {

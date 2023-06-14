@@ -49,9 +49,9 @@ const DashboardLayout = () => {
             </div>
             <div className="drawer-side">
                 {/* TODO: Logo */}
-                {/* <div className="bg-transparent overflow-hidden">
+                <div className="bg-transparent overflow-hidden -ml-2">
                     <Logo></Logo>
-                </div> */}
+                </div>
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-primary-clr text-white uppercase pt-16 text-xl">
                     {/* Sidebar content here */}

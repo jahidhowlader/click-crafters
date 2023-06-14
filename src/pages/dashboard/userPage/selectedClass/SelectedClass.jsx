@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const SelectedClass = () => {
 
     const [selectedCourses, refetch] = useSelectedCourse()
-    console.log(selectedCourses);
 
     const totalAmmount = selectedCourses.reduce((prev, next) => prev + +next.price, 0)
 
