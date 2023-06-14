@@ -5,14 +5,19 @@ import './TopCoursesCard.css'
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import useSelectedCourse from '../../hook/useSelectedCourse';
 
 const TopCoursesCard = ({ course }) => {
+
+    // Already Seleted Course course
+    const [selectedCourses] = useSelectedCourse()
+    const seletedCourseId = selectedCourses.map(singleCourse => singleCourse.course_id)
 
     // Auth Context
     const { user } = useAuthContext()
 
     // get Data from Explore class using props
-    const { _id, title, thumbnail, instructors_name, students, available_seat, price } = course
+    const { _id, title, thumbnail, students, available_seat, instructors_name, price } = course
 
     // Navigator hook for redirect routes
     const navigator = useNavigate()
@@ -78,7 +83,9 @@ const TopCoursesCard = ({ course }) => {
 
             <div className='px-3'>
                 <button onClick={handlerSelect}
-                    className={`bg-blue hover:bg-primary-clr hover:text-white w-full text-center mb-5 uppercase py-2 font-bold ${available_seat == 0 || disable ? 'hidden' : 'block'}`}>Select
+                    disabled={seletedCourseId.includes(_id) ? true : false}
+                    className={`bg-blue hover:bg-primary-clr hover:text-white w-full text-center mb-5 uppercase py-2 font-bold ${available_seat == 0 ? 'hidden' : 'block'}`}>
+                    {seletedCourseId.includes(_id) ? 'Already Selected' : 'Course Select'}
                 </button>
             </div>
         </div>

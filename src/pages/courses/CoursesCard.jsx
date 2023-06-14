@@ -3,8 +3,13 @@ import useAuthContext from "../../hook/useAuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import useSelectedCourse from "../../hook/useSelectedCourse";
 
 const CoursesCard = ({ course }) => {
+
+    // Already Seleted Course course
+    const [selectedCourses] = useSelectedCourse()
+    const seletedCourseId = selectedCourses.map(singleCourse => singleCourse.course_id)
 
     // Auth Context
     const { user } = useAuthContext()
@@ -18,7 +23,11 @@ const CoursesCard = ({ course }) => {
 
     // handlerSELECT 
     const [disable, setDisable] = useState(false)
+
     const handlerSelect = () => {
+
+
+
         if (!user) {
             return navigator('/signin', { state: { from: location } })
         }
@@ -59,6 +68,9 @@ const CoursesCard = ({ course }) => {
             })
     }
 
+
+
+
     return (
         <div className={`${available_seat == 0 ? 'bg-red' : 'bg-primary-clr'} text-white flex flex-col justify-between`}>
             <div>
@@ -74,7 +86,11 @@ const CoursesCard = ({ course }) => {
             </div>
             <div>
                 <hr className="border-white border-opacity-30 " />
-                <button onClick={handlerSelect} className={`px-3 text-xl ${(available_seat == 0 || disable) ? 'text-white' : 'text-blue opacity-70'}  font-medium uppercase py-3`} disabled={(available_seat == 0 || disable ) ? true : false}>{disable ? 'Already Selected' : 'Course Select'}</button>
+                <button onClick={handlerSelect}
+                    className={`px-3 text-xl ${(available_seat == 0 || disable) ? 'text-white' : 'text-blue opacity-70'}  font-medium uppercase py-3`}
+                    disabled={(available_seat == 0 || disable || seletedCourseId.includes(_id)) ? true : false}>
+                    {disable || seletedCourseId.includes(_id) ? <span className="text-white">Already Selected</span> : 'Course Select'}
+                </button>
             </div>
         </div>
     );

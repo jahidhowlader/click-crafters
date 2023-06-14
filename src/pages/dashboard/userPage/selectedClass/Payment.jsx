@@ -1,15 +1,17 @@
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 import CheckOutForm from "./CheckOutForm"
-import useSelectedCourse from "../../../../hook/useSelectedCourse"
+import { useLocation } from "react-router-dom"
 
 const stripePromise = loadStripe(import.meta.env.VITE_GATWAY_PK)
 const Payment = () => {
 
-    const [selectedCourses] = useSelectedCourse()
+    const location = useLocation()
 
-    const totalAmmount = selectedCourses.reduce((prev, next) => prev + +next.price, 0)
-    const price = parseFloat(totalAmmount.toFixed(2))
+    const coursePrice = location.state?.price
+    const course = location.state?.course
+
+    const price = parseFloat(coursePrice).toFixed(2)
 
     return (
         <section className="py-16">
@@ -19,7 +21,7 @@ const Payment = () => {
                 <div></div>
                 <div>
                     <Elements stripe={stripePromise}>
-                        <CheckOutForm price={price}></CheckOutForm> 
+                        <CheckOutForm course={course} price={price}></CheckOutForm> 
                     </Elements>
                 </div>
                 <div></div>

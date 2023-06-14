@@ -76,11 +76,6 @@ const SelectedClass = () => {
                 <div className="flex justify-between items-center">
                     <h3 className="text-3xl font-bold uppercase">My Selected Courses are : {selectedCourses.length} </h3>
                     <h3 className="text-3xl font-bold uppercase">In Total Ammount : ${totalAmmount}</h3>
-                    <Link to="/dashboard/payment">
-                                                <button className="mr-2 bg-blue hover:bg-opacity-80 p-2 rounded">
-                                                    Payment
-                                                </button>
-                                            </Link>
                 </div>
 
                 <div className="overflow-x-auto my-8">
@@ -98,7 +93,7 @@ const SelectedClass = () => {
                         <tbody>
                             {/* row 1 */}
                             {
-                                selectedCourses.map((course, idx) =>
+                                selectedCourses.reverse().map((course, idx) =>
                                     <tr key={idx}>
                                         <th>
                                             <p>{idx + 1}</p>
@@ -111,7 +106,7 @@ const SelectedClass = () => {
                                         </td>
                                         <td>${course.price}</td>
                                         <th className="flex items-center justify-center">
-                                            <Link to="/dashboard/payment">
+                                            <Link to="/dashboard/payment" state={{price: course.price, course: course}}>
                                                 <button className="mr-2 bg-blue hover:bg-opacity-80 p-2 rounded">
                                                     Payment
                                                 </button>

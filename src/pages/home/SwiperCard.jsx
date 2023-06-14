@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
 import TopCoursesCard from "./TopCoursesCard";
 
-const SwiperCard = ({ topSellingCourses, slidesPerView }) => {
+const SwiperCard = ({ topSellingCourses, slidesPerView, }) => {
     return (
         <Swiper
             slidesPerView={slidesPerView}
@@ -24,9 +24,9 @@ const SwiperCard = ({ topSellingCourses, slidesPerView }) => {
             {
                 topSellingCourses.map((course, idx) =>
                     <SwiperSlide key={idx}>
-                        <TopCoursesCard
-                            course={course}
-                        ></TopCoursesCard>
+                            <TopCoursesCard
+                                course={course}
+                            ></TopCoursesCard>
                     </SwiperSlide>
                 )
             }

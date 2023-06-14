@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import SwiperCard from "./SwiperCard";
+import { Slide } from "react-awesome-reveal";
 
 const ExploreClass = () => {
 
@@ -11,17 +12,21 @@ const ExploreClass = () => {
             <h2 className="text-center font-bold text-3xl">Explore our classes</h2>
 
             <div className="hidden md:block">
-                <SwiperCard
-                    topSellingCourses={topSellingCourses}
-                    slidesPerView={4}
-                ></SwiperCard>
+                <Slide direction="right">
+                    <SwiperCard
+                        topSellingCourses={topSellingCourses}
+                        slidesPerView={4}
+                    ></SwiperCard>
+                </Slide>
             </div>
 
             <div className="md:hidden">
-                <SwiperCard
-                    topSellingCourses={topSellingCourses}
-                    slidesPerView={1}
-                ></SwiperCard>
+                <Slide>
+                    <SwiperCard
+                        topSellingCourses={topSellingCourses}
+                        slidesPerView={1}
+                    ></SwiperCard>
+                </Slide>
             </div>
         </section>
     );
