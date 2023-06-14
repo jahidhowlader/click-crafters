@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import InstructorSwiperCard from "./InstructorSwiperCard";
 import Marquee from "react-fast-marquee";
 import axios from "axios";
 

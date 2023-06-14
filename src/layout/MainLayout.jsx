@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Header from "../pages/shared/header/Header";
 import Footer from "../pages/shared/footer/Footer";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from "../pages/shared/header/Navbar";
 
 
 const MainLayout = () => {
     return (
         <>
-            <Header></Header>
+            <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
             <ToastContainer />

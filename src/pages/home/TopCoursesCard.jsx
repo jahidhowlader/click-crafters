@@ -5,16 +5,8 @@ import './TopCoursesCard.css'
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
-import useAdmin from '../../hook/useAdmin';
-import useInstructor from '../../hook/useInstructor';
 
 const TopCoursesCard = ({ course }) => {
-
-    // Check Admin
-    const [isAdmin] = useAdmin()
-
-    // Check Instructor
-    const [isInstructor] = useInstructor()
 
     // Auth Context
     const { user } = useAuthContext()
@@ -86,7 +78,7 @@ const TopCoursesCard = ({ course }) => {
 
             <div className='px-3'>
                 <button onClick={handlerSelect}
-                    className={`bg-blue hover:bg-primary-clr hover:text-white w-full text-center mb-5 uppercase py-2 font-bold ${available_seat == 0 || disable || isAdmin || isInstructor? 'hidden' : 'block'}`}>Select
+                    className={`bg-blue hover:bg-primary-clr hover:text-white w-full text-center mb-5 uppercase py-2 font-bold ${available_seat == 0 || disable ? 'hidden' : 'block'}`}>Select
                 </button>
             </div>
         </div>

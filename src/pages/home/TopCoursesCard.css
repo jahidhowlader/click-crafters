@@ -1,5 +1,21 @@
-.swiper-wrapper{
+.keen-slider{
+    height: 85vh;
+}
+
+.swiper-wrapper {
     padding: 50px 0;
     display: flex;
     align-items: center;
-}   
+}
+
+@media screen and (max-width: 640px) {
+
+    .keen-slider{
+        height: 40vh;
+    }
+    .swiper-wrapper {
+        padding: 100px 0;
+        display: flex;
+        align-items: center;
+    }
+}

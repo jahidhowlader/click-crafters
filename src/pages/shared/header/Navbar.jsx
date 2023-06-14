@@ -1,18 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-import useAdmin from "../../../hook/useAdmin";
 import useAuthContext from "../../../hook/useAuthContext";
-import useInstructor from "../../../hook/useInstructor";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import Logo from "../logo/Logo";
 
 const Navbar = () => {
-
-    // Check Admin
-    const [isAdmin] = useAdmin()
-
-    // Check Instructor
-    const [isInstructor] = useInstructor()
 
      // Context API
      const { user, logOut } = useAuthContext()
@@ -49,7 +41,7 @@ const Navbar = () => {
             user ? <>
                 <li>
                     <button >
-                        <Link to={isAdmin ? 'dashboard' : isInstructor ? '/dashboard/my-classes' : '/dashboard/seleted-classes'}>DASHBOARD</Link>
+                        <Link to="/dashboard">DASHBOARD</Link>
                     </button>
                 </li>
                 <li>

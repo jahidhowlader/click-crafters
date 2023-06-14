@@ -17,7 +17,6 @@ import InstructorRoutes from "./InstructorRoutes";
 import SelectedClass from "../pages/dashboard/userPage/selectedClass/SelectedClass";
 import EnrolledClasses from "../pages/dashboard/userPage/enrolledClasses/EnrolledClasses";
 import Users from "../pages/dashboard/adminPage/users/Users";
-// import CheckOutForm from "../pages/dashboard/userPage/selectedClass/CheckOutForm";
 import Payment from "../pages/dashboard/userPage/selectedClass/Payment";
 import ManageCourses from "../pages/dashboard/adminPage/manageClasses/ManageCourses";
 
