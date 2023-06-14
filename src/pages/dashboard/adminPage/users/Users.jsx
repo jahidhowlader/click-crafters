@@ -18,7 +18,7 @@ const Users = () => {
     // handlerUserAdmin
     const handlerUserAdmin = user => {
 
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://click-crafters-server-jahidhowlader.vercel.app/users/admin/${user._id}`, {
             method: "PATCH"
         })
             .then(res => res.json())
@@ -66,7 +66,7 @@ const Users = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+                fetch(`https://click-crafters-server-jahidhowlader.vercel.app/users/instructor/${user._id}`, {
                     method: "PATCH"
                 })
                     .then(res => res.json())
@@ -83,7 +83,7 @@ const Users = () => {
 
                             const token = localStorage.getItem('access-token')
 
-                            fetch('http://localhost:5000/instructor', {
+                            fetch('https://click-crafters-server-jahidhowlader.vercel.app/instructor', {
                                 method: "POST",
                                 headers: {
                                     authorization: `bearer ${token}`,
@@ -152,7 +152,7 @@ const Users = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/users/delete/${_id}`, {
+                fetch(`https://click-crafters-server-jahidhowlader.vercel.app/users/delete/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

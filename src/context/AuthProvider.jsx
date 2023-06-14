@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
 
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt',
+                axios.post('https://click-crafters-server-jahidhowlader.vercel.app/jwt',
                     {
                         email: currentUser.email
                     })

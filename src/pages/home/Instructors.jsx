@@ -8,7 +8,7 @@ const Instructors = () => {
     const [instructors, setInstructors] = useState([])
     useEffect(() => {
 
-        axios.get('http://localhost:5000/instructor')
+        axios.get('https://click-crafters-server-jahidhowlader.vercel.app/instructor')
             .then(data => {
                 setInstructors(data.data)
             })

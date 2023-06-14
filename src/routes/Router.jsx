@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch('https://click-crafters-server-jahidhowlader.vercel.app/courses')
             },
             {
                 path: "signin",
@@ -45,12 +45,12 @@ const router = createBrowserRouter([
             {
                 path: "courses",
                 element: <Courses></Courses>,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch('https://click-crafters-server-jahidhowlader.vercel.app/courses')
             },
             {
                 path: "instructors",
                 element: <Instructors></Instructors>,
-                loader: () => fetch('http://localhost:5000/instructor')
+                loader: () => fetch('https://click-crafters-server-jahidhowlader.vercel.app/instructor')
             },
         ]
     },

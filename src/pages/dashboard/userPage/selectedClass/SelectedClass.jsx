@@ -32,7 +32,7 @@ const SelectedClass = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/selected-courses/${_id}`, {
+                fetch(`https://click-crafters-server-jahidhowlader.vercel.app/selected-courses/${_id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

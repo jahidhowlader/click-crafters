@@ -101,7 +101,7 @@ const CheckOutForm = ({ price, course }) => {
                             timer: 1500
                         })
 
-                        fetch(`http://localhost:5000/course/${course.course_id}`, {
+                        fetch(`https://click-crafters-server-jahidhowlader.vercel.app/course/${course.course_id}`, {
                             method: "PATCH",
                             headers: {
                                 "content-type": "application/json"
@@ -109,7 +109,7 @@ const CheckOutForm = ({ price, course }) => {
                             body: JSON.stringify(course)
                         })
 
-                        fetch(`http://localhost:5000/course/${course.course_id}`, {
+                        fetch(`https://click-crafters-server-jahidhowlader.vercel.app/course/${course.course_id}`, {
                             method: "DELETE"
                         })
 

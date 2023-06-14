@@ -42,7 +42,7 @@ const CoursesCard = ({ course }) => {
             students
         }
 
-        fetch('http://localhost:5000/selected-courses', {
+        fetch('https://click-crafters-server-jahidhowlader.vercel.app/selected-courses', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
