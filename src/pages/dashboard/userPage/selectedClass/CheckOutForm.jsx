@@ -2,8 +2,13 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../../hook/useAxiosSecure';
 import useAuthContext from '../../../../hook/useAuthContext';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import './CheckOutForm.css'
 
 const CheckOutForm = ({ price, course }) => {
+
+    console.log(course);
 
     const stripe = useStripe()
     const elements = useElements()
@@ -14,7 +19,8 @@ const CheckOutForm = ({ price, course }) => {
     const [processing, setProcessing] = useState(false)
     const [tansactionID, setTransactionID] = useState('')
 
-    
+    const navigate = useNavigate()
+
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price })
@@ -79,9 +85,48 @@ const CheckOutForm = ({ price, course }) => {
             setTransactionID(paymentIntent.id)
 
             // save payment information to the server
-            const payment = {course}
+            const paymentDetails = {
+                course_id: course.course_id,
+                email: user?.email,
+                transactionID: paymentIntent.id,
+                price: course.price,
+                date: new Date()
+            }
 
-            axiosSecure.post('/payments', {payment})
+            // fetch(`http://localhost:5000/course/${course.course_id}`, {
+            //     method: "PATCH",
+            //     headers: {
+            //         "content-type": "application/json"
+            //     },
+            //     body: JSON.stringify(course)
+            // })
+
+            axiosSecure.post('/payments', { paymentDetails })
+                .then(res => {
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Payment Successfull',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                        fetch(`http://localhost:5000/course/${course.course_id}`, {
+                            method: "PATCH",
+                            headers: {
+                                "content-type": "application/json"
+                            },
+                            body: JSON.stringify(course)
+                        })
+
+                        fetch(`http://localhost:5000/course/${course.course_id}`, {
+                            method: "DELETE"
+                        })
+
+                        navigate('/dashboard/selected-classes')
+                    }
+                })
         }
 
         event.target.reset()
@@ -105,16 +150,19 @@ const CheckOutForm = ({ price, course }) => {
                         },
                     }}
                 />
-                <button type="submit" className='bg-blue my-5 text-white px-5 py-2' disabled={!stripe || !clientSecret || processing}>
-                    Pay
-                </button>
+                <div className='text-center'>
+
+                    <button type="submit" className='bg-blue text-white px-5 py-2 ' disabled={!stripe || !clientSecret || processing}>
+                        Pay
+                    </button>
+                </div>
             </form>
             {
-                cardError && <p className='text-red text-center'>{cardError}</p>
+                cardError && <p className='text-red text-center mt-3'>{cardError}</p>
             }
 
             {
-                tansactionID && <p className='text-green text-center'>Transaction Complete with transactionID {tansactionID}</p>
+                tansactionID && <p className='text-green text-center mt-3'>Transaction Complete with transactionID {tansactionID}</p>
 
             }
         </>

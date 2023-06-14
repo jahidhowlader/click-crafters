@@ -34,7 +34,9 @@ const TopCoursesCard = ({ course }) => {
             title,
             instructors_name,
             price,
-            email: user.email
+            email: user.email,
+            available_seat,
+            students
         }
 
         fetch('http://localhost:5000/selected-courses', {
@@ -84,7 +86,7 @@ const TopCoursesCard = ({ course }) => {
             <div className='px-3'>
                 <button onClick={handlerSelect}
                     disabled={seletedCourseId.includes(_id) ? true : false}
-                    className={`bg-blue hover:bg-primary-clr hover:text-white w-full text-center mb-5 uppercase py-2 font-bold ${available_seat == 0 ? 'hidden' : 'block'}`}>
+                    className={`bg-blue hover:bg-primary-clr hover:text-white w-full text-center mb-5 uppercase py-2 font-bold ${available_seat == 0 || disable || seletedCourseId.includes(_id)? 'hidden' : 'block'}`}>
                     {seletedCourseId.includes(_id) ? 'Already Selected' : 'Course Select'}
                 </button>
             </div>

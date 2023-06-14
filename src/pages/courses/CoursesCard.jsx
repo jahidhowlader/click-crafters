@@ -15,7 +15,7 @@ const CoursesCard = ({ course }) => {
     const { user } = useAuthContext()
 
     // get Data from Explore class using props
-    const { thumbnail, title, instructors_name, available_seat, price, _id } = course
+    const { thumbnail, title, instructors_name, available_seat, price, _id, students } = course
 
     // Navigator hook for redirect routes
     const navigator = useNavigate()
@@ -37,7 +37,9 @@ const CoursesCard = ({ course }) => {
             title,
             instructors_name,
             price,
-            email: user.email
+            email: user.email,
+            available_seat,
+            students
         }
 
         fetch('http://localhost:5000/selected-courses', {
